@@ -258,7 +258,7 @@ div.fixed {
 
 .PDFContent {
   background-color: white;
-  padding:20px 25px;"
+  padding:20px 25px;
 }
 
 .demo {
@@ -293,7 +293,7 @@ div.fixed {
 }
 
 .nav {
-  background-color: #ffffff;
+  background-color: transparent;
   list-style-type: none;
   text-align: center;
   width: 44.2%;
