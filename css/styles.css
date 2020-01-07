@@ -113,6 +113,11 @@ div.fixed {
   border: none;
   outline: none;
   font-size: 18px;
+  margin-bottom: 18px;
+}
+
+.active1 {
+  margin-bottom: 0px;
 }
 
 .active1, .collapsible:hover {
