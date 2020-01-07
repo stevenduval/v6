@@ -40,7 +40,7 @@ $('.content').on('click', 'img, button', function(){
         $(this).next().toggleClass('active');
       } 
     }
-  // when no sub header button is clicked
+    // when no sub header button is clicked
     else if (x === 'noSubheader') {
       $('#subheader img:last-child').remove();
       $('#demosubHeader').text(x); 
