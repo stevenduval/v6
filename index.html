@@ -54,25 +54,25 @@
           <button class="collapsible">Additional Articles</button>
           <div class="content">
             <p>Additional articles allow you to share updates, conference information, new faculty, and more. Adding too many articles or too much content makes the email longer requiring more scrolling. DMD recommends a maximum of 5 articles. Your template will be created with 5 articles, if you choose not to use them all, it is easy to remove the unused ones on a send by send basis.</p>
-            <img class="image" src="images/article2I.jpg" alt="..." name="article2I">
+            <img class="image" src="images/article2I.jpg" alt="..." name="article2Ix4">
 
-            <button class="btn" id="btn3">Images</button>
-            <button class="btn" id="btn4" onclick="myFunctionAdditional1NI()" name="article2NIx4">No Images</button>
+            <button class="btn" name="article2Ix4">Images</button>
+            <button class="btn" name="article2NIx4">No Images</button>
 
-            <input type="image" onclick="myFunctionAdditional2()" class="image" src="images/article3.jpg" alt="..." name="additionalArticles">
+            <img class="image" src="images/article3.jpg" alt="..." name="article3x4">
 
-              <button class="btn" id="btn5" onclick="myFunctionAdditional2()">Continuous</button>
-              <button class="btn" id="btn6" onclick="myFunctionAdditional2ALT()" name="article3altx4">Alternating</button>
+            <button class="btn" name="article3x4">Continuous</button>
+            <button class="btn" name="article3altx4">Alternating</button>
 
-            <input type="image" onclick="myFunctionAdditional3()" class="image" src="images/article4.jpg" alt="..." name="additionalArticles">
+            <img class="image" src="images/article4.jpg" alt="..." name="article4x4">
 
-              <button class="btn" id="btn7" onclick="myFunctionAdditional3()">Continuous</button>
-              <button class="btn" id="btn8" onclick="myFunctionAdditional3ALT()" name="article4altx4">Alternating</button>
+            <button class="btn" name="article4x4">Continuous</button>
+            <button class="btn" name="article4altx4">Alternating</button>
 
-            <input type="image" onclick="myFunctionAdditional4()" class="image" src="images/article5I.jpg" alt="..." name="additionalArticles">
+            <img class="image" src="images/article5I.jpg" alt="..." name="article5Ix4">
 
-              <button class="btn" id="btn9" onclick="myFunctionAdditional4()">Image</button>
-              <button class="btn" id="btn10" onclick="myFunctionAdditional4NI()" name="article5NIx4">No Images</button>
+            <button class="btn" name="article5Ix4"></button>Image</button>
+            <button class="btn" name="article5NIx4">No Images</button>
 
           </div>
           <!--End of Additional Articles section-->
@@ -81,17 +81,18 @@
           <button class="collapsible">Call Out Sections</button>
           <div class="content">
             <p>These sections are useful for adding additional information that doesn't fit in the article section. Upcoming conference dates, newly published articles, referral information, registering for events, USNWR badges, affiliation images, or links to popular pages on your website are just some examples that can be put in these call out sections.</p>
-            <label class="container">
-							<input type="checkbox" id="myCheck1" onclick="myFunctionCallOut1()" name="signup" value="" autocomplete="off">
-            	<img src="images/signup.jpg" class="image" alt="..."><span class="checkmark"></span>
+            <label class="container" name="signup">
+							<input type="checkbox" value="" autocomplete="off" name="signup">
+              <img class="image" src="images/signup.jpg" alt="..." name="signup"> 
+              <span class="checkmark" name="signup"></span>
             </label>
-            <label class="container">
-							<input type="checkbox" id="myCheck2" onclick="myFunctionCallOut2()" name="callOutSections" value="" autocomplete="off">
-            	<img src="images/list.jpg" class="image" alt="...">
-              <span class="checkmark"></span>
+            <label class="container" name="list">
+							<input type="checkbox" value="" autocomplete="off" name="list">
+            	<img class="image" src="images/list.jpg" alt="..." name="list">
+              <span class="checkmark" name="list"></span>
             </label>
-            <input type="image" onclick="myFunctionCallOut3()" src="images/badges1.jpg" alt="..." class="image" name="callOutSections">
-            <input type="image" onclick="myFunctionCallOut4()" src="images/badges2.jpg" alt="..." class="image" name="callOutSections">
+            <img class="image" src="images/badges1.jpg" alt="..." name="badges1">
+            <img class="image" src="images/badges2.jpg" alt="..." name="badges2">
           </div>
           <!--End of Call Out Sections section-->
 
@@ -100,8 +101,8 @@
           <button class="collapsible">Footer Sections</button>
           <div class="content">
             <p>All emails require certain elements be included to be incompliance with CAN-SPAM. DMD footers include all the information required as well as an extra space to add in any additional information you would like to include, such as copyright information, phone numbers, or webpage URLs.</p>
-            <input type="image" onclick="myFunctionFooter1()" src="images/footer1.jpg" alt="..." class="image" name="footer">
-            <input type="image" onclick="myFunctionFooter2()" src="images/footer2.jpg" alt="..." class="image" name="footer">
+            <img class="image" src="images/footer1.jpg" alt="..." name="footer1">
+            <img class="image" src="images/footer2.jpg" alt="..." name="footer2">
           </div>
           <!--End of Footer Sections section-->
 
@@ -125,8 +126,8 @@
               <tr>
                 <th>Header Section</th>
                 <td>
-                  <p id="demosubHeader"></p>
                   <p id="demoHeader"></p>
+                  <p id="demosubHeader"></p>
                 </td>
               </tr>
               <tr>
@@ -169,21 +170,20 @@
                 <button type="reset" class="btn" onclick="document.location.reload()">RESET THE TEMPLATE</button>
             </div>
             <div class="innerColumn">
-              <div id="subheader">
-              </div>
               <div id="header">
+              </div>
+              <div id="subheader">
               </div>
   						<div id="FeaturedArticles">
               </div>
               <div id="AdditionalArticles">
               </div>
               <div id="CallOutSections">
-                <p id="text1" class="demo"><img src="images/signup.jpg" class="imagedemo" alt="..."></p>
-                <p id="text2" class="demo"><img src="images/list.jpg" class="imagedemo" alt="..."></p>
-                <img id="myImageCallOutSections" class="imagedemo">
+                <p id="item1" class="demo"></p>
+                <p id="item2" class="demo"></p>
+                <p id="item3" class="demo"></p>
               </div>
               <div id="Footer">
-                <img id="myImageFooter" class="imagedemo" src="">
               </div>
             </div>
           </div>
