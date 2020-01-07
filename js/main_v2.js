@@ -1,9 +1,20 @@
+// Semi-Custom Template Builder v6 updated 1/7/2020 by Steven Duval
+
+// on pageload make sure page is scrolled to the top
 $( document ).ready(function() {
   var position = $($('.relative')).offset().top;
   $("body, html").animate({
 		scrollTop: position
-	} , 1500);
+  } , 1500);
+  var height = $('.div').height() - $('.nav').height();
+  $('.innerColumn').css('height', height)
 });
+
+$(window).on('resize', function(){
+  var height = $('.div').height() - $('.nav').height();
+  $('.innerColumn').css('height', height)
+});
+
 
 // set global var to select all collapsible divs
 var coll = $('.collapsible');
@@ -20,276 +31,118 @@ coll.on('click', function(){
   });
   // get content of currently selected element
   var content = $(this).next();
-  //toggle active1 class and show content if active1 class is present
+  // toggle active1 class
   $(this).toggleClass('active1');
-  if ($(this).hasClass('active1')) {
-    $(content).fadeIn(2000)}
-    else {
-      $(content).hide();
-    }
-
-    console.log($(this).index());
-    if ($(this).index() === 2) {
-    var position = 151;
-    }
-    if ($(this).index() === 4) {
-      var position = 219;
-    }
-    if ($(this).index() === 6) {
-    var position = 287;
-    }
-    if ($(this).index() === 8) {
-      var position = 355;
-    }
-    if ($(this).index() === 10) {
-      var position = 423;
-      }
-  
-    $("body, html").delay(400).animate({
-      scrollTop: position
-    } , 2000);
-
+  // show content if active1 class is present
+  ($(this).hasClass('active1')) ? $(content).fadeIn(3000) : $(content).hide();
+  // set position depending on which section button is clicked
+  if ($(this).index() === 2) { var position = 151;}
+  if ($(this).index() === 4) { var position = 219;}
+  if ($(this).index() === 6) { var position = 287;}
+  if ($(this).index() === 8) { var position = 355;}
+  if ($(this).index() === 10) { var position = 423;}
+  // scroll to element depending upon which section button is clicked
+  $("body, html").delay(400).animate({
+    scrollTop: position
+  } , 2000);
 });
 
-// listen for clicks on images and buttons in items with classes of content
-$('.content').on('click', 'img, button', function() {
-  var section = $(this).parent().prev().text();
-  var x = $(this).attr('name');
-  var imgSRC = '<img class=imagedemo src=images/' + x + '.jpg>';
+// listen for clicks on images, buttons and span tags with classes of content
+$('.content').on('click', 'img, button, span', function() {
+  var section;
+  // grab text for the parent is label set section code to first option otherwise last option
+  ($(this).parent().is('label')) ? section = $(this).parent().parent().prev().text() : section = $(this).parent().prev().text();
+  // get the value of the name attribute for the current element
+  var elemAttrName = $(this).attr('name');
+  // default image src path to be inserted
+  var imgSRC = '<img class=imagedemo src=images/' + elemAttrName + '.jpg>';
   // header section 
   if (section === 'Header Section'){
     // when all other items besides the sub header buttons are clicked
-    if (x != 'subheader' && x != 'noSubheader') {
+    if (elemAttrName != 'subheader' && elemAttrName != 'noSubheader') {
+      // remove image tag
       $('#header img:last-child').remove();
+      // add image tag
       $('#header').append(imgSRC);
-      $('#demoHeader').text(x);
-    } // when subheader button is clicked
-    else if ( x === 'subheader') {
+      // add text to pdf area
+      $('#demoHeader').text(elemAttrName);
+    } // when subheader or no sub header button is clicked
+    else {
+      // remove image tag
       $('#subheader img:last-child').remove();
-      $('#subheader').append(imgSRC);
-      $('#demosubHeader').text(x);
+      // add image tag if equal to selected element is equal to subheader
+      if ( elemAttrName == 'subheader') {$('#subheader').append(imgSRC);}
+      // add text to pdf area
+      $('#demosubHeader').text(elemAttrName);
+      // toggle active class for subheader and no subheader buttons
       if (!$(this).hasClass('active')){ 
         $(this).addClass('active');
         $(this).next().toggleClass('active');
       } 
     }
-    // when no sub header button is clicked
-    else if (x === 'noSubheader') {
-      $('#subheader img:last-child').remove();
-      $('#demosubHeader').text(x); 
-      if (!$(this).hasClass('active')) { 
-        $(this).addClass('active');
-        $(this).prev().toggleClass('active');
-      }
-    }
   }
   // featured articles section
   else if (section === 'Featured Articles') {
+    // remove image tag
     $('#FeaturedArticles img:last-child').remove();
+    // add image tag
     $('#FeaturedArticles').append(imgSRC);
-    $('#demoFeatured').text(x);
+    // add text to pdf area
+    $('#demoFeatured').text(elemAttrName);
   }
   // additional articles section
   else if (section === 'Additional Articles') {
-
-
-
-    if (x === 'article2I') {
-      $('#myImageAdditional img:last-child').remove();
-      $('#AdditionalArticles').append(imgSRC);
-      $('#demoAdditional').text(x);
-      $(this).next().addClass('btnTest');
-      
-
+    // loop through each button, except current button
+    $('button').not(this).each(function(index, element) {
+      // check if class btnTest exists
+      if ($(element).hasClass('btnTest')) {
+        // if exists remove btnTest class
+        $(element).removeClass('btnTest');
+      }
+    })
+    // if active item is an image add btnTest class to next element
+    if ($(this).is('img')) { $(this).next().addClass('btnTest');}
+    // if active item is a button add btnTest class to current element
+    if ($(this).is('button')) { $(this).addClass('btnTest');} 
+    // remove image tag
+    $('#AdditionalArticles img:last-child').remove();
+    // add image tag
+    $('#AdditionalArticles').append(imgSRC);
+    // add text to pdf area
+    $('#demoAdditional').text(elemAttrName);
+  }// call out section
+  else if (section === 'Call Out Sections') {
+    // if sign up section is clicked
+    if (elemAttrName === 'signup') {
+      // check if image tag is present, if it is remove it, otherwise add it
+      ($('#item1').has('img').length === 1) ? $('#item1 img:last-child').remove() : $('#item1').append(imgSRC);
+      // check if image is present, if present add text to pdf, else set text to nothing
+      ($('#item1').has('img').length === 1) ? $('#demoCallOut1').text(elemAttrName) : $('#demoCallOut1').text('');
+    } // if list section clicked
+    else if (elemAttrName === 'list') {
+      // check if image tag is present, if it is remove it, otherwise add it
+      ($('#item2').has('img').length === 1) ? $('#item2 img:last-child').remove() : $('#item2').append(imgSRC);
+      // check if image is present, if present add text to pdf, else set text to nothing
+      ($('#item2').has('img').length === 1) ? $('#demoCallOut2').text(elemAttrName) : $('#demoCallOut2').text('');
+    } // if badgest section is clicked
+    else if (elemAttrName === 'badges1' || elemAttrName === 'badges2' ) {
+      // remove image in item3 section
+      $('#item3 img:last-child').remove();
+      /// add image in item3 section
+      $('#item3').append(imgSRC);
+      // set text pdf text
+      $('#demoCallOut3').text(elemAttrName)
     }
   }
+  else if (section === 'Footer Sections') {
+    // remove image in item3 section
+    $('#Footer img:last-child').remove();
+    /// add image in item3 section
+    $('#Footer').append(imgSRC);
+    // set text pdf text
+    $('#demoFooter').text(elemAttrName)
+  }
 });
-
-
-
-function myFunctionAdditional1() {
-  document.getElementById("myImageAdditional").src = "images/article2Ix4.jpg";
-  document.getElementById("myImageAdditional").name = "article2Ix4";
-  var x = document.getElementById("myImageAdditional").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btnTest" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional1NI() {
-  document.getElementById("myImageAdditional").src = "images/article2NIx4.jpg";
-  document.getElementById("myImageAdditional").name = "article2NIx4";
-  var x = document.getElementById("btn4").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btnTest" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional2() {
-  document.getElementById("myImageAdditional").src = "images/article3x4.jpg";
-  document.getElementById("myImageAdditional").name = "article2Ix4";
-  var x = document.getElementById("myImageAdditional").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btnTest" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional2ALT() {
-  document.getElementById("myImageAdditional").src = "images/article3altx4.jpg";
-  document.getElementById("myImageAdditional").name = "article3altx4";
-  var x = document.getElementById("btn6").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btnTest")
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional3() {
-  document.getElementById("myImageAdditional").src = "images/article4x4.jpg";
-  document.getElementById("myImageAdditional").name = "article4x4";
-  var x = document.getElementById("myImageAdditional").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btnTest" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional3ALT() {
-  document.getElementById("myImageAdditional").src = "images/article4altx4.jpg";
-  document.getElementById("myImageAdditional").name = "article4altx4";
-  var x = document.getElementById("btn8").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btnTest" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-}
-
-function myFunctionAdditional4() {
-  document.getElementById("myImageAdditional").src = "images/article5Ix4.jpg";
-  document.getElementById("myImageAdditional").name = "article5Ix4";
-  var x = document.getElementById("myImageAdditional").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btnTest" );
-  document.getElementById("btn10").setAttribute("class","btn" );
-
-}
-
-function myFunctionAdditional4NI() {
-  document.getElementById("myImageAdditional").src = "images/article5NIx4.jpg";
-  document.getElementById("myImageAdditional").name = "article5NIx4";
-  var x = document.getElementById("btn10").name;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("demoAdditional").innerHTML = x;
-  document.getElementById("btn3").setAttribute("class","btn" );
-  document.getElementById("btn4").setAttribute("class","btn" );
-  document.getElementById("btn5").setAttribute("class","btn" );
-  document.getElementById("btn6").setAttribute("class","btn" );
-  document.getElementById("btn7").setAttribute("class","btn" );
-  document.getElementById("btn8").setAttribute("class","btn" );
-  document.getElementById("btn9").setAttribute("class","btn" );
-  document.getElementById("btn10").setAttribute("class","btnTest" );
-}
-
-function myFunctionCallOut1() {
-  var checkBox = document.getElementById("myCheck1");
-  var text = document.getElementById("text1");
-  if (checkBox.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-  document.getElementById("myCheck1").name = "signup";
-  var x = document.getElementById("myCheck1").name;
-  document.getElementById("demoCallOut1").innerHTML = x;
-  if (checkBox.checked == true){
-    demoCallOut1.style.display = "block";
-  } else {
-     demoCallOut1.style.display = "none";
-  }
-}
-
-function myFunctionCallOut2() {
-  var checkBox = document.getElementById("myCheck2");
-  var text = document.getElementById("text2");
-  if (checkBox.checked == true){
-    text.style.display = "block";
-  } else {
-     text.style.display = "none";
-  }
-  document.getElementById("myCheck2").name = "list";
-  var x = document.getElementById("myCheck2").name;
-  document.getElementById("demoCallOut2").innerHTML = x;
-  if (checkBox.checked == true){
-    demoCallOut2.style.display = "block";
-  } else {
-     demoCallOut2.style.display = "none";
-  }
-}
-
-function myFunctionCallOut3() {
-  document.getElementById("myImageCallOutSections").src = "images/badges1.jpg";
-  document.getElementById("myImageCallOutSections").name = "badges1";
-  var x = document.getElementById("myImageCallOutSections").name;
-  document.getElementById("demoCallOut3").innerHTML = x;
-}
-function myFunctionCallOut4() {
-  document.getElementById("myImageCallOutSections").src = "images/badges2.jpg";
-  document.getElementById("myImageCallOutSections").name = "badges2";
-  var x = document.getElementById("myImageCallOutSections").name;
-  document.getElementById("demoCallOut3").innerHTML = x;
-}
-
-function myFunctionFooter1() {
-  document.getElementById("myImageFooter").src = "images/footer1.jpg";
-  document.getElementById("myImageFooter").name = "footer1";
-  var x = document.getElementById("myImageFooter").name;
-  document.getElementById("demoFooter").innerHTML = x;
-}
-function myFunctionFooter2() {
-  document.getElementById("myImageFooter").src = "images/footer2.jpg";
-  document.getElementById("myImageFooter").name = "footer2";
-  var x = document.getElementById("myImageFooter").name;
-  document.getElementById("demoFooter").innerHTML = x;
-}
 
 var pdfdoc = new jsPDF();
 var specialElementHandlers = {
