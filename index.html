@@ -7,46 +7,11 @@
     <link rel="shortcut icon" href="images/icon/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
-        <!--[if IE]><style>
-    .message {
-      width: 50%;
-      border-radius: 10px;
-      background-color: #ffffff;
-      display: block;
-      margin: 100px auto 0;
-      padding: 50px;
-      text-align: center;
-    }
-
-    .message p {
-      text-align: center;
-    }
-
-    .error .buttons {
-      margin: 0 auto;
-      display: block;
-    }
-
-    .error .buttons a {
-      padding: 10px 0;
-      margin: 0 10px;
-    }
-
-    .error {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background-color: #333333;
-      z-index: 900;
-    }
-    </style><![endif]-->
   </head>
   <body>
-
   <!--header section-->
-
-      </div>
   <div class="relative">
     <div class="absolute">
       <div class="wrapper">
@@ -68,13 +33,11 @@
           <button class="collapsible">Header Section</button>
           <div class="content">
             <p>The header will let your users know who is sending the email. It can include a logo that links to your website and a newsletter name. The header section can include a sub-header with information such as the date, department or service line, or a teaser as to what is in the newsletter ("In this issue...").</p>
-            <image class="image" src="images/headerL.jpg" alt="..." name="headerL">
-            <image class="image" src="images/headerC.jpg" alt="..." name="headerC">
-            <image class="image" src="images/headerR.jpg" alt="..." name="headerR">
-            <div id="myDIV1">
-              <button class="btn" id="btn1" onclick="myFunctionsubHeader()" name="Subheader">Subheader</button>
-              <button class="btn active" id="btn2" onclick="myFunctionNosubHeader()" name="NoSubheader">No Subheader</button>
-            </div>
+            <img class="image" src="images/headerL.jpg" alt="..." name="headerL">
+            <img class="image" src="images/headerC.jpg" alt="..." name="headerC">
+            <img class="image" src="images/headerR.jpg" alt="..." name="headerR">
+            <button class="btn" id="btn1" name="subheader">Subheader</button>
+            <button class="btn active" id="btn2" name="noSubheader">No Subheader</button>
           </div>
           <!--End of Header section-->
 
@@ -82,8 +45,8 @@
           <button class="collapsible">Featured Articles</button>
           <div class="content">
             <p>The first article in a newsletter often receives the most clicks, so including a prominent story at the top is a great way to capture readers attention. Having a large image is a great way to capture the user's interest so that they continue reading.</p>
-            <image class="image" src="images/article1.jpg" alt="..." name="article1">
-            <image class="image" src="images/article2I.jpg" alt="..." name="article2I">
+            <img class="image" src="images/article1.jpg" alt="..." name="article1">
+            <img class="image" src="images/article2I.jpg" alt="..." name="article2I">
           </div>
           <!--End of Featured Articles section-->
 
@@ -120,15 +83,15 @@
             <p>These sections are useful for adding additional information that doesn't fit in the article section. Upcoming conference dates, newly published articles, referral information, registering for events, USNWR badges, affiliation images, or links to popular pages on your website are just some examples that can be put in these call out sections.</p>
             <label class="container">
 							<input type="checkbox" id="myCheck1" onclick="myFunctionCallOut1()" name="signup" value="" autocomplete="off">
-            	<img src="images/signup.jpg" class="image" alt="..."><span class="checkmark"></span></input>
+            	<img src="images/signup.jpg" class="image" alt="..."><span class="checkmark"></span>
             </label>
             <label class="container">
 							<input type="checkbox" id="myCheck2" onclick="myFunctionCallOut2()" name="callOutSections" value="" autocomplete="off">
             	<img src="images/list.jpg" class="image" alt="...">
-              <span class="checkmark"></span></input>
+              <span class="checkmark"></span>
             </label>
-            <input type="image" onclick="myFunctionCallOut3()" src="images/badges1.jpg" alt="..." class="image" name="callOutSections"></input>
-            <input type="image" onclick="myFunctionCallOut4()" src="images/badges2.jpg" alt="..." class="image" name="callOutSections"></input>
+            <input type="image" onclick="myFunctionCallOut3()" src="images/badges1.jpg" alt="..." class="image" name="callOutSections">
+            <input type="image" onclick="myFunctionCallOut4()" src="images/badges2.jpg" alt="..." class="image" name="callOutSections">
           </div>
           <!--End of Call Out Sections section-->
 
@@ -138,7 +101,7 @@
           <div class="content">
             <p>All emails require certain elements be included to be incompliance with CAN-SPAM. DMD footers include all the information required as well as an extra space to add in any additional information you would like to include, such as copyright information, phone numbers, or webpage URLs.</p>
             <input type="image" onclick="myFunctionFooter1()" src="images/footer1.jpg" alt="..." class="image" name="footer">
-            <input type="image" onclick="myFunctionFooter2()" src="images/footer2.jpg" alt="..." class="image"name="footer">
+            <input type="image" onclick="myFunctionFooter2()" src="images/footer2.jpg" alt="..." class="image" name="footer">
           </div>
           <!--End of Footer Sections section-->
 
@@ -149,10 +112,8 @@
           <p>DMD will create your template and a custom Template Content pdf for you fill out prior to each send to ensure that DMD has all the content and information that they need. </p>
           <p><b>Please do not send your content for the email until you have received the Template Content pdf. </b>Doing so will create delays in your send.</p>
 
-          <div id="myDIV2">
-            <button class="btn" id="downloadPdf" style="width: 43.5%;">DOWNLOAD WIREFRAME</button>
-            <a href="http://static.cdn.responsys.net/i2/responsysimages/content/dmdmarketing/Template_Setup.pdf" download target="_blank"><button class="btn" style="width: 43.5%;">DOWNLOAD TEMPLATE SETUP</button><a>
-          </div>
+          <button class="btn" id="downloadPdf" style="width: 43.5%;">DOWNLOAD WIREFRAME</button>
+          <a href="http://static.cdn.responsys.net/i2/responsysimages/content/dmdmarketing/Template_Setup.pdf" download target="_blank"><button class="btn" style="width: 43.5%;">DOWNLOAD TEMPLATE SETUP</button></a>
 
           <div class="DMDuse">
             <h3>Wireframe Template</h3>
@@ -164,8 +125,8 @@
               <tr>
                 <th>Header Section</th>
                 <td>
-                  <p id="demoHeader"></p>
                   <p id="demosubHeader"></p>
+                  <p id="demoHeader"></p>
                 </td>
               </tr>
               <tr>
@@ -205,14 +166,12 @@
         <div id="parent">
           <div class="div">
             <div class="nav">
-              <div id="myDIV3">
                 <button type="reset" class="btn" onclick="document.location.reload()">RESET THE TEMPLATE</button>
-              </div>
             </div>
             <div class="innerColumn">
-              <div id="header">
+              <div id="subheader">
               </div>
-  						<div id="subheader">
+              <div id="header">
               </div>
   						<div id="FeaturedArticles">
               </div>
