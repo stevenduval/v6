@@ -23,27 +23,31 @@ $('.content').on('click', 'img, button', function(){
   var section = $(this).parent().prev().text();
   var x = $(this).attr('name');
   var imgSRC = '<img class=imagedemo src=images/' + x + '.jpg>';
-  // header section & not sub header or no sub header button
-  if (section === 'Header Section' && x != 'subheader' && x != 'noSubheader') {
-    $('#header img:last-child').remove();
-    $('#header').append(imgSRC);
-    $('#demoHeader').text(x);
-  // header section and is sub header button 
-  } else if (section === 'Header Section' && x === 'subheader') {
-    $('#subheader img:last-child').remove();
-    $('#subheader').append(imgSRC);
-    $('#demosubHeader').text(x);
-    if (!$(this).hasClass('active')){ 
-      $(this).addClass('active');
-      $(this).next().toggleClass('active');
-    } 
-  // header section and is no sub header button 
-  } else if (section === 'Header Section' && x === 'noSubheader') {
-    $('#subheader img:last-child').remove();
-    $('#demosubHeader').text(x); 
-    if (!$(this).hasClass('active')){ 
-      $(this).addClass('active');
-      $(this).prev().toggleClass('active');
+  // header section 
+  if (section === 'Header Section'){
+    // when all other items besides the sub header buttons are clicked
+    if (x != 'subheader' && x != 'noSubheader') {
+      $('#header img:last-child').remove();
+      $('#header').append(imgSRC);
+      $('#demoHeader').text(x);
+    } // when subheader button is clicked
+    else if ( x === 'subheader') {
+      $('#subheader img:last-child').remove();
+      $('#subheader').append(imgSRC);
+      $('#demosubHeader').text(x);
+      if (!$(this).hasClass('active')){ 
+        $(this).addClass('active');
+        $(this).next().toggleClass('active');
+      } 
+    }
+  // when no sub header button is clicked
+    else if (x === 'noSubheader') {
+      $('#subheader img:last-child').remove();
+      $('#demosubHeader').text(x); 
+      if (!$(this).hasClass('active')){ 
+        $(this).addClass('active');
+        $(this).prev().toggleClass('active');
+      }
     }
   }
   // featured articles section
@@ -52,22 +56,23 @@ $('.content').on('click', 'img, button', function(){
     $('#FeaturedArticles').append(imgSRC);
     $('#demoFeatured').text(x);
   }
+  // additional articles section
+  else if (section === 'Additional Articles') {
+
+
+
+    if (x === 'article2I') {
+      $('#myImageAdditional img:last-child').remove();
+      $('#AdditionalArticles').append(imgSRC);
+      $('#demoAdditional').text(x);
+      $(this).next().addClass('btnTest');
+      
+
+    }
+  }
 });
 
 
-function myFunctionFeatured1() {
-  document.getElementById("myImageFeatured").src = "images/article1.jpg";
-  document.getElementById("myImageFeatured").name = "article1";
-  var x = document.getElementById("myImageFeatured").name;
-  document.getElementById("demoFeatured").innerHTML = x;
-}
-
-function myFunctionFeatured2() {
-  document.getElementById("myImageFeatured").src = "images/article2I.jpg";
-  document.getElementById("myImageFeatured").name = "article2I";
-  var x = document.getElementById("myImageFeatured").name;
-  document.getElementById("demoFeatured").innerHTML = x;
-}
 
 function myFunctionAdditional1() {
   document.getElementById("myImageAdditional").src = "images/article2Ix4.jpg";
