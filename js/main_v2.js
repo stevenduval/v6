@@ -2,7 +2,7 @@ $( document ).ready(function() {
   var position = $($('.relative')).offset().top;
   $("body, html").animate({
 		scrollTop: position
-	} , 1000);
+	} , 1500);
 });
 
 // set global var to select all collapsible divs
