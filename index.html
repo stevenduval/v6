@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Semi-Custom Template Builder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="images/icon/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+        <!--[if IE]><style>
+    .message {
+      width: 50%;
+      border-radius: 10px;
+      background-color: #ffffff;
+      display: block;
+      margin: 100px auto 0;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .message p {
+      text-align: center;
+    }
+
+    .error .buttons {
+      margin: 0 auto;
+      display: block;
+    }
+
+    .error .buttons a {
+      padding: 10px 0;
+      margin: 0 10px;
+    }
+
+    .error {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: #333333;
+      z-index: 900;
+    }
+    </style><![endif]-->
+  </head>
+  <body>
+
+  <!--header section-->
+
+      </div>
+  <div class="relative">
+    <div class="absolute">
+      <div class="wrapper">
+        <img id="logo" src="images/dmdlogo-white.png" alt="Logo" width="200">
+      </div>
+    </div>
+  </div>
+  <!--end header section-->
+
+  <!--Custom Template section-->
+  <div class="wrapper">
+    <div class="row">
+      <div class="column">
+        <div class="start">
+          <h1>Semi Custom Template</h1>
+          <p>Using the building blocks provided, you can build your own template. Once you've chosen all the elements you would like, click "Download Wireframe" to download the wireframe information and send it to DMD.</p>
+
+          <!--Header section-->
+          <button class="collapsible">Header Section</button>
+          <div class="content">
+            <p>The header will let your users know who is sending the email. It can include a logo that links to your website and a newsletter name. The header section can include a sub-header with information such as the date, department or service line, or a teaser as to what is in the newsletter ("In this issue...").</p>
+            <image class="image" src="images/headerL.jpg" alt="..." name="headerL">
+            <image class="image" src="images/headerC.jpg" alt="..." name="headerC">
+            <image class="image" src="images/headerR.jpg" alt="..." name="headerR">
+            <div id="myDIV1">
+              <button class="btn" id="btn1" onclick="myFunctionsubHeader()" name="Subheader">Subheader</button>
+              <button class="btn active" id="btn2" onclick="myFunctionNosubHeader()" name="NoSubheader">No Subheader</button>
+            </div>
+          </div>
+          <!--End of Header section-->
+
+          <!--Featured Articles section-->
+          <button class="collapsible">Featured Articles</button>
+          <div class="content">
+            <p>The first article in a newsletter often receives the most clicks, so including a prominent story at the top is a great way to capture readers attention. Having a large image is a great way to capture the user's interest so that they continue reading.</p>
+            <image class="image" src="images/article1.jpg" alt="..." name="article1">
+            <image class="image" src="images/article2I.jpg" alt="..." name="article2I">
+          </div>
+          <!--End of Featured Articles section-->
+
+          <!--Additional Articles section-->
+          <button class="collapsible">Additional Articles</button>
+          <div class="content">
+            <p>Additional articles allow you to share updates, conference information, new faculty, and more. Adding too many articles or too much content makes the email longer requiring more scrolling. DMD recommends a maximum of 5 articles. Your template will be created with 5 articles, if you choose not to use them all, it is easy to remove the unused ones on a send by send basis.</p>
+            <input type="image" onclick="myFunctionAdditional1()" class="image" src="images/article2I.jpg" alt="..." name="additionalArticles">
+
+              <button class="btn" id="btn3" onclick="myFunctionAdditional1()">Images</button>
+              <button class="btn" id="btn4" onclick="myFunctionAdditional1NI()" name="article2NIx4">No Images</button>
+
+            <input type="image" onclick="myFunctionAdditional2()" class="image" src="images/article3.jpg" alt="..." name="additionalArticles">
+
+              <button class="btn" id="btn5" onclick="myFunctionAdditional2()">Continuous</button>
+              <button class="btn" id="btn6" onclick="myFunctionAdditional2ALT()" name="article3altx4">Alternating</button>
+
+            <input type="image" onclick="myFunctionAdditional3()" class="image" src="images/article4.jpg" alt="..." name="additionalArticles">
+
+              <button class="btn" id="btn7" onclick="myFunctionAdditional3()">Continuous</button>
+              <button class="btn" id="btn8" onclick="myFunctionAdditional3ALT()" name="article4altx4">Alternating</button>
+
+            <input type="image" onclick="myFunctionAdditional4()" class="image" src="images/article5I.jpg" alt="..." name="additionalArticles">
+
+              <button class="btn" id="btn9" onclick="myFunctionAdditional4()">Image</button>
+              <button class="btn" id="btn10" onclick="myFunctionAdditional4NI()" name="article5NIx4">No Images</button>
+
+          </div>
+          <!--End of Additional Articles section-->
+
+					<!--Call Out Sections section-->
+          <button class="collapsible">Call Out Sections</button>
+          <div class="content">
+            <p>These sections are useful for adding additional information that doesn't fit in the article section. Upcoming conference dates, newly published articles, referral information, registering for events, USNWR badges, affiliation images, or links to popular pages on your website are just some examples that can be put in these call out sections.</p>
+            <label class="container">
+							<input type="checkbox" id="myCheck1" onclick="myFunctionCallOut1()" name="signup" value="" autocomplete="off">
+            	<img src="images/signup.jpg" class="image" alt="..."><span class="checkmark"></span></input>
+            </label>
+            <label class="container">
+							<input type="checkbox" id="myCheck2" onclick="myFunctionCallOut2()" name="callOutSections" value="" autocomplete="off">
+            	<img src="images/list.jpg" class="image" alt="...">
+              <span class="checkmark"></span></input>
+            </label>
+            <input type="image" onclick="myFunctionCallOut3()" src="images/badges1.jpg" alt="..." class="image" name="callOutSections"></input>
+            <input type="image" onclick="myFunctionCallOut4()" src="images/badges2.jpg" alt="..." class="image" name="callOutSections"></input>
+          </div>
+          <!--End of Call Out Sections section-->
+
+          <!--Footer Sections section-->
+          <!--Footer Sections section-->
+          <button class="collapsible">Footer Sections</button>
+          <div class="content">
+            <p>All emails require certain elements be included to be incompliance with CAN-SPAM. DMD footers include all the information required as well as an extra space to add in any additional information you would like to include, such as copyright information, phone numbers, or webpage URLs.</p>
+            <input type="image" onclick="myFunctionFooter1()" src="images/footer1.jpg" alt="..." class="image" name="footer">
+            <input type="image" onclick="myFunctionFooter2()" src="images/footer2.jpg" alt="..." class="image"name="footer">
+          </div>
+          <!--End of Footer Sections section-->
+
+
+
+          <h2>Next Steps</h2>
+          <p>Download the wireframe and template setup files below. Please fill out the template setup pdf with information for your business and then send both files to DMD.</p>
+          <p>DMD will create your template and a custom Template Content pdf for you fill out prior to each send to ensure that DMD has all the content and information that they need. </p>
+          <p><b>Please do not send your content for the email until you have received the Template Content pdf. </b>Doing so will create delays in your send.</p>
+
+          <div id="myDIV2">
+            <button class="btn" id="downloadPdf" style="width: 43.5%;">DOWNLOAD WIREFRAME</button>
+            <a href="http://static.cdn.responsys.net/i2/responsysimages/content/dmdmarketing/Template_Setup.pdf" download target="_blank"><button class="btn" style="width: 43.5%;">DOWNLOAD TEMPLATE SETUP</button><a>
+          </div>
+
+          <div class="DMDuse">
+            <h3>Wireframe Template</h3>
+            <p>This is the information we need in order to build your template and is included in the pdf that you downloaded above. Haven't downloaded it yet? What are you waiting for?:)</p>
+          </div>
+
+          <div id="divContent" class="PDFContent">
+            <table>
+              <tr>
+                <th>Header Section</th>
+                <td>
+                  <p id="demoHeader"></p>
+                  <p id="demosubHeader"></p>
+                </td>
+              </tr>
+              <tr>
+                <th>Featured Articles</th>
+                <td>
+                  <p id="demoFeatured"></p>
+                </td>
+              </tr>
+              <tr>
+                <th>Additional Articles</th>
+                <td>
+                  <p id="demoAdditional"></p>
+                </td>
+              </tr>
+              <tr>
+                <th>Call Out Sections</th>
+                <td>
+                  <p id="demoCallOut1"></p>
+                  <p id="demoCallOut2"></p>
+                  <p id="demoCallOut3"></p>
+                </td>
+              </tr>
+              <tr>
+                <th>Footer Sections</th>
+                <td>
+                  <p id="demoFooter"></p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--End of Custom Template section-->
+
+      <!--Template section-->
+      <div class="column">
+        <div id="parent">
+          <div class="div">
+            <div class="nav">
+              <div id="myDIV3">
+                <button type="reset" class="btn" onclick="document.location.reload()">RESET THE TEMPLATE</button>
+              </div>
+            </div>
+            <div class="innerColumn">
+              <div id="header">
+              </div>
+  						<div id="subheader">
+              </div>
+  						<div id="FeaturedArticles">
+              </div>
+              <div id="AdditionalArticles">
+              </div>
+              <div id="CallOutSections">
+                <p id="text1" class="demo"><img src="images/signup.jpg" class="imagedemo" alt="..."></p>
+                <p id="text2" class="demo"><img src="images/list.jpg" class="imagedemo" alt="..."></p>
+                <img id="myImageCallOutSections" class="imagedemo">
+              </div>
+              <div id="Footer">
+                <img id="myImageFooter" class="imagedemo" src="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--End of Template section-->
+    </div>
+  </div>
+  <!--End of body section-->
+
+  <script src="js/main_v2.js"></script>
+</body>
+</html>
