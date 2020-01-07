@@ -1,82 +1,59 @@
-// run on page load 
-$(document).ready(function(){
-  $("#btn1").click(function(){
-    $("#subheader").show("#subheader");
-  });
-});
-$(document).ready(function(){
-  $("#btn2").click(function(){
-    $("#subheader").hide("#subheader");
-  });
-});
-
 // set global var to select all collapsible divs
 var coll = $('.collapsible');
 
-// add active1 class to the section that is clicked and show /hide depending on if active class is present
+// check for click on all items with class of collapsible
 coll.on('click', function(){
-  $(this).toggleClass('active1');
+  // loop through each element with class of collapsible but not the currently clicked item
+  // if it has a class of active1 remove it and hide its content 
+  $(coll).not(this).each(function(index, btn){
+    if ($(btn).hasClass('active1')){
+      $(btn).removeClass('active1');
+      $(btn).next().hide();
+    }
+  });
+  // get content of currently selected element
   var content = $(this).next();
+  //toggle active1 class and show content if active1 class is present
+  $(this).toggleClass('active1');
   ($(this).hasClass('active1')) ? $(content).show() : $(content).hide();
 });
 
-
-var header = document.getElementById("myDIV1");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
-
-var header = document.getElementById("myDIV2");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
-
-var header = document.getElementById("myDIV3");
-var btns = header.getElementsByClassName("btn");
-for (var i = 0; i < btns.length; i++) {
-  btns[i].addEventListener("click", function() {
-  var current = document.getElementsByClassName("active");
-  current[0].className = current[0].className.replace(" active", "");
-  this.className += " active";
-  });
-}
-
-
-$('.content').on('click', 'img' ,function(){
+// listen for clicks on images and buttons in items with classes of content
+$('.content').on('click', 'img, button', function(){
   var section = $(this).parent().prev().text();
   var x = $(this).attr('name');
   var imgSRC = '<img class=imagedemo src=images/' + x + '.jpg>';
-  if (section === 'Header Section') {
+  // header section & not sub header or no sub header button
+  if (section === 'Header Section' && x != 'subheader' && x != 'noSubheader') {
+    $('#header img:last-child').remove();
     $('#header').append(imgSRC);
     $('#demoHeader').text(x);
-  } else if (section === 'Featured Articles') {
+  // header section and is sub header button 
+  } else if (section === 'Header Section' && x === 'subheader') {
+    $('#subheader img:last-child').remove();
+    $('#subheader').append(imgSRC);
+    $('#demosubHeader').text(x);
+    if (!$(this).hasClass('active')){ 
+      $(this).addClass('active');
+      $(this).next().toggleClass('active');
+    } 
+  // header section and is no sub header button 
+  } else if (section === 'Header Section' && x === 'noSubheader') {
+    $('#subheader img:last-child').remove();
+    $('#demosubHeader').text(x); 
+    if (!$(this).hasClass('active')){ 
+      $(this).addClass('active');
+      $(this).prev().toggleClass('active');
+    }
+  }
+  // featured articles section
+  else if (section === 'Featured Articles') {
+    $('#FeaturedArticles img:last-child').remove();
     $('#FeaturedArticles').append(imgSRC);
     $('#demoFeatured').text(x);
   }
 });
 
-
-function myFunctionsubHeader() {
-  document.getElementById("myImageSubheader").src = "images/subheader.jpg";
-  document.getElementById("myImageSubheader").name = "subheader";
-  var x = document.getElementById("btn1").name;
-  document.getElementById("demosubHeader").innerHTML = x;
-}
-
-function myFunctionNosubHeader() {
-  var x = document.getElementById("btn2").name;
-  document.getElementById("demosubHeader").innerHTML = x;
-}
 
 function myFunctionFeatured1() {
   document.getElementById("myImageFeatured").src = "images/article1.jpg";
