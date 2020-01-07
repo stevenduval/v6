@@ -1,12 +1,41 @@
+$( document ).ready(function() {
+  var position = $($('.relative')).offset().top;
+  $("body, html").animate({
+		scrollTop: position
+	} , 1000);
+});
+
 // set global var to select all collapsible divs
 var coll = $('.collapsible');
 
 // check for click on all items with class of collapsible
 coll.on('click', function(){
+
+  console.log($(this).index());
+  if ($(this).index() === 2) {
+  var position = 151;
+  }
+  if ($(this).index() === 4) {
+    var position = 219;
+  }
+  if ($(this).index() === 6) {
+  var position = 287;
+  }
+  if ($(this).index() === 8) {
+    var position = 355;
+  }
+  if ($(this).index() === 10) {
+    var position = 423;
+    }
+
+	$("body, html").animate({
+		scrollTop: position
+	} , 2000);
+
   // loop through each element with class of collapsible but not the currently clicked item
   // if it has a class of active1 remove it and hide its content 
-  $(coll).not(this).each(function(index, btn){
-    if ($(btn).hasClass('active1')){
+  $(coll).not(this).each(function(index, btn) {
+    if ($(btn).hasClass('active1')) {
       $(btn).removeClass('active1');
       $(btn).next().hide();
     }
@@ -15,11 +44,15 @@ coll.on('click', function(){
   var content = $(this).next();
   //toggle active1 class and show content if active1 class is present
   $(this).toggleClass('active1');
-  ($(this).hasClass('active1')) ? $(content).show() : $(content).hide();
+  if ($(this).hasClass('active1')) {
+    $(content).fadeIn(3000)}
+    else {
+      $(content).hide();
+    }
 });
 
 // listen for clicks on images and buttons in items with classes of content
-$('.content').on('click', 'img, button', function(){
+$('.content').on('click', 'img, button', function() {
   var section = $(this).parent().prev().text();
   var x = $(this).attr('name');
   var imgSRC = '<img class=imagedemo src=images/' + x + '.jpg>';
@@ -44,7 +77,7 @@ $('.content').on('click', 'img, button', function(){
     else if (x === 'noSubheader') {
       $('#subheader img:last-child').remove();
       $('#demosubHeader').text(x); 
-      if (!$(this).hasClass('active')){ 
+      if (!$(this).hasClass('active')) { 
         $(this).addClass('active');
         $(this).prev().toggleClass('active');
       }
